@@ -58,4 +58,3 @@ for i in range(len(parametros['n_neighbors'])):
     print(f'Precisão: {precision:.4f}')
     print(f'Revocação: {recall:.4f}')
     print(f'F1-Score: {f1:.4f}')
-    print()
