@@ -24,6 +24,31 @@ grid.fit(X_train, y_train)
 print("Melhores hiperparâmetros: ", grid.best_params_)
 print("Melhor score: ", grid.best_score_)
 
+# cria as listas para os valores de K, acurácias e F1-scores correspondentes
+k_values = parametros['n_neighbors']
+accuracies = []
+f1_scores = []
+
+for k in k_values:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train, y_train)
+    y_pred = knn.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred, average='macro')
+    accuracies.append(accuracy)
+    f1_scores.append(f1)
+
+# plota as curvas de acurácia e F1-score para cada valor de K
+plt.plot(k_values, accuracies, 'o-', label='Acurácia')
+plt.plot(k_values, f1_scores, 'o-', label='F1-Score')
+plt.title('Curva de Acurácia e F1-Score por valor de K')
+plt.xlabel('K')
+plt.ylabel('Pontuação')
+plt.xticks(k_values)
+plt.legend()
+plt.show()
+
+
 # # Teste final com os 30% separados
 # y_pred = grid.predict(X_test)
 # score = grid.score(X_test, y_test)
