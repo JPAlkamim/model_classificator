@@ -16,7 +16,8 @@ y_4 = y[y == 4]
 
 y_4_vs_all = np.where(y == 4, 1, 0)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y_4_vs_all, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y_4_vs_all, test_size=0.3, random_state=42)
 
 knn = KNeighborsClassifier()
 parametros = {'n_neighbors': [3, 5, 7, 9, 11]}

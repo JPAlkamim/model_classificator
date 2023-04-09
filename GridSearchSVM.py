@@ -6,19 +6,21 @@ import numpy as np
 X = np.load('Banco/X9.npy')
 y = np.load('Banco/y9.npy')
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42)
 skf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
 
 svm = SVC()
 
-param_grid = [    
-    {"kernel": ['rbf'], "gamma": [1, 0.1, 0.01, 0.001, 0.0001], "C": [0.1, 1, 10, 100, 1000]},
+param_grid = [
+    {"kernel": ['rbf'], "gamma": [1, 0.1, 0.01, 0.001, 0.0001],
+        "C": [0.1, 1, 10, 100, 1000]},
     {"kernel": ["linear"], "C": [1, 10, 100, 1000]},
 ]
 
 gscv = GridSearchCV(svm, param_grid, cv=skf, scoring='f1_macro')
 print("Aqui")
-gscv.fit(X_train, y_train) 
+gscv.fit(X_train, y_train)
 
 print("Best parameters set found on development set:")
 print(gscv.best_params_)

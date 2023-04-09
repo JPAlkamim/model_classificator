@@ -7,7 +7,8 @@ import numpy as np
 X = np.load('Banco/X9.npy')
 y = np.load('Banco/y9.npy')
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42)
 skf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
 
 # Definindo o modelo
@@ -38,5 +39,6 @@ best_rf = grid_search.best_estimator_
 y_pred = best_rf.predict(X_test)
 
 # Avaliando o desempenho do modelo
-print('Test set F1-score: {:.5f}'.format(f1_score(y_test, y_pred, average='macro')))
+print(
+    'Test set F1-score: {:.5f}'.format(f1_score(y_test, y_pred, average='macro')))
 print('Test set accuracy: {:.5f}'.format(best_rf.score(X_test, y_test)))
