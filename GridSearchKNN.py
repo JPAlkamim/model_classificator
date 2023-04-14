@@ -6,6 +6,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import confusion_matrix
+import seaborn as sns
 
 
 X9 = np.load('Banco/X9.npy')
