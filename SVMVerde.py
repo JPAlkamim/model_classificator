@@ -2,6 +2,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.model_selection import StratifiedKFold
 import numpy as np
+import matplotlib.pyplot as plt
 
 X = np.load('Banco/X9.npy')
 y = np.load('Banco/y9.npy')

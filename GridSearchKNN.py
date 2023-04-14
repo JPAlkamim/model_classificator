@@ -5,6 +5,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+
 
 X9 = np.load('Banco/X9.npy')
 y9 = np.load('Banco/y9.npy')
@@ -45,6 +48,24 @@ plt.xlabel('K')
 plt.ylabel('Pontuação')
 plt.xticks(k_values)
 plt.legend()
+plt.show()
+
+# treina o modelo com o melhor valor de K
+knn = KNeighborsClassifier(n_neighbors=grid.best_params_['n_neighbors'])
+knn.fit(X_train, y_train)
+
+# realiza as previsões no conjunto de teste
+y_pred = knn.predict(X_test)
+
+# cria a matriz de confusão
+cm = confusion_matrix(y_test, y_pred)
+
+# plota a matriz de confusão
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
+plt.xlabel('Predicted label')
+plt.ylabel('True label')
+plt.title(f'Matriz de Confusão - KNN (K={grid.best_params_["n_neighbors"]})')
 plt.show()
 
 
