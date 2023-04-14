@@ -6,11 +6,11 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 
-X3 = np.load('Banco/X9.npy')
-y3 = np.load('Banco/y9.npy')
+X9 = np.load('Banco/X9.npy')
+y9 = np.load('Banco/y9.npy')
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X3, y3, test_size=0.3, random_state=42)
+    X9, y9, test_size=0.3, random_state=42)
 
 skf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
 knn = KNeighborsClassifier()
